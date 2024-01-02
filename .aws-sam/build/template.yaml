@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A lambda to test the interaction between docker and pytest
+Resources:
+  dockerpytestinteraction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize: 10240
+      Timeout: 900
+      ImageUri: dockerpytestinteraction:latest
+    Metadata:
+      DockerContext: /Users/williamweihnacht/Documents/Etset/docker_pytest_interaction
+      DockerTag: latest
+      Dockerfile: pytestDockerfile
+      SamResourceId: dockerpytestinteraction

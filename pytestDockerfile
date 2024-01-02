@@ -1,0 +1,11 @@
+FROM public.ecr.aws/lambda/python:3.11
+
+# copy over app.py and requirements file for depenency installations
+COPY app.py requirements.txt test_lambda.py ./
+
+# install the aws lambda runtime interface client and all dependencies for SAM app
+RUN python3.11 -m pip install pytest
+RUN python3.11 -m pip install -r requirements.txt
+
+# run the aws lambda runtime interface client and call app.py
+ENTRYPOINT [ "python3.11", "-m", "pytest" ]
